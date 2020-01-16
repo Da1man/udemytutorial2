@@ -9,7 +9,7 @@ const PostNavigator = createStackNavigator({
     screen: PostScreen,
   }
 }, {
-   initialRouteName: 'Main' ,
+   initialRouteName: 'Main',
   });
 
 export const AppNavigation = createAppContainer(PostNavigator);
