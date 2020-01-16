@@ -2,19 +2,21 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {MainScreen} from './MainScreen';
 
-export const PostScreen = ({}) => {
-  return <View style={styles.center}>
-    <Text>PostScreen</Text>
-  </View>;
+export const PostScreen = ({navigation}) => {
+  const postId = navigation.getParam('postId');
+  return (
+    <View style={styles.center}>
+      <Text>{postId}</Text>
+    </View>
+  );
 };
 
-PostScreen.navigationOptions = {
-  headerTitle: 'Пост номер 42',
-  headerStyle: {
-    backgroundColor: 'red',
-  },
-  headerTintColor: '#fff'
-}
+PostScreen.navigationOptions = ({navigation}) => {
+  const date = navigation.getParam('date');
+  return {
+    headerTitle: 'Пост от ' + new Date(date).toLocaleDateString(),
+  };
+};
 
 const styles = StyleSheet.create({
   center: {
