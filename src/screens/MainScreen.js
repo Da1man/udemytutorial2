@@ -22,7 +22,9 @@ export const MainScreen = ({navigation}) => {
 
 MainScreen.navigationOptions = {
   headerTitle: 'Мой Блог',
-  headerRight: <Text>111</Text>,
+  headerRight: <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+    <Item title="Take photo" iconName='ios-camera' onPress={() => console.log('aaaaaaaaaa')} />
+  </HeaderButtons>,
 };
 
 const styles = StyleSheet.create({
