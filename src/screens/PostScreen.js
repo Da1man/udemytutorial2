@@ -47,7 +47,7 @@ PostScreen.navigationOptions = ({navigation}) => {
   const iconName = booked ? 'ios-star' : 'ios-star-outline'
   return {
     headerTitle: 'Пост от ' + new Date(date).toLocaleDateString(),
-    headerRight: <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+    headerRight: () => <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item title="Take photo" iconName={iconName} onPress={() => console.log('aaaaaaaaaa')} />
     </HeaderButtons>,
   };
