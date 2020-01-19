@@ -12,34 +12,25 @@ import {BookedScreen} from '../screens/BookedScreen';
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const PostNavigator = createStackNavigator({
-  Main: MainScreen,
-  Post: {
-    screen: PostScreen,
-  }
-}, {
-   initialRouteName: 'Main',
+const NavigatorOptions = {
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
     },
     headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
   },
-  });
+}
+
+const PostNavigator = createStackNavigator({
+  Main: MainScreen,
+  Post: PostScreen,
+}, NavigatorOptions );
 
 
 const BookedNavigator = createStackNavigator ({
   Booked: BookedScreen,
   Post: PostScreen,
-},
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
-      },
-      headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
-    },
-})
+}, NavigatorOptions );
 
 const bottomTabsConfig = {
   Post: {
