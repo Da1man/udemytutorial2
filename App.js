@@ -1,14 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {Provider} from 'react-redux';
 
 import {AppNavigation} from './src/navigation/AppNavigation';
+import store from './src/store'
 
 export default App = () => {
   return (
-    <AppNavigation />
+    <Provider store={store}>
+      <AppNavigation/>
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-
-});

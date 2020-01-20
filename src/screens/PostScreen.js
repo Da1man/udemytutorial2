@@ -11,7 +11,7 @@ export const PostScreen = ({navigation}) => {
   const post = DATA.find(p => p.id === postId);
 
   // useEffect(() => {
-  //   navigation.setParams({booked: post.booked})
+  //   navigation.setParams({booked: reducers.booked})
   // }, [])
 
   const removeHandler = () => {
