@@ -73,7 +73,7 @@ const AboutNavigator = createStackNavigator({
 }, NavigatorOptions)
 
 const CreateNavigator = createStackNavigator({
-  About: CreateScreen,
+  Create: CreateScreen,
 }, NavigatorOptions)
 
 const MainNavigator = createDrawerNavigator({
