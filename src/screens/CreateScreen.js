@@ -1,17 +1,29 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Image, Button, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native';
-import {useDispatch} from 'react-redux'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  Button,
+  ScrollView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {AppHeaderIcon} from '../components/AppHeaderIcon';
 import {AboutScreen} from './AboutScreen';
 import {THEME} from '../theme';
 import {addPost} from '../store/actions/postActions';
+import {PhotoPicker} from '../components/PhotoPicker';
 
 export const CreateScreen = ({navigation}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [text, setText] = useState('');
 
-  const img = 'http://www.bighouse.ru/images/slides/%D0%B2%D0%B8%D0%B4%202%20%D0%B1%D1%80%D0%B5%D0%B2%D0%BD%D0%BE_s.jpg'
+  const img = 'http://www.bighouse.ru/images/slides/%D0%B2%D0%B8%D0%B4%202%20%D0%B1%D1%80%D0%B5%D0%B2%D0%BD%D0%BE_s.jpg';
 
   const saveHandler = () => {
     const post = {
@@ -19,27 +31,28 @@ export const CreateScreen = ({navigation}) => {
       text: text,
       img: img,
       booked: false,
-    }
-    dispatch(addPost(post))
-    navigation.navigate('Main')
+    };
+    dispatch(addPost(post));
+    navigation.navigate('Main');
   };
+
+
   return <ScrollView>
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss() }>
-    <View style={styles.wrapper}>
-      <Text style={styles.title}>Создай новый пост</Text>
-      <TextInput
-        style={styles.textArea}
-        placeholder={'Введите текст поста'}
-        value={text}
-        onChangeText={setText}
-        multiline
-      />
-      <Image style={{width: '100%', height: 200, marginBottom: 10}}
-             source={{uri: img}}/>
-      <Button title={'Создать пост'} color={THEME.MAIN_COLOR} onPress={saveHandler}/>
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.wrapper}>
+        <Text style={styles.title}>Создай новый пост</Text>
+        <TextInput
+          style={styles.textArea}
+          placeholder={'Введите текст поста'}
+          value={text}
+          onChangeText={setText}
+          multiline
+        />
+        <PhotoPicker />
+        <Button title={'Создать пост'} color={THEME.MAIN_COLOR} onPress={saveHandler}/>
+      </View>
     </TouchableWithoutFeedback>
-  </ScrollView>
+  </ScrollView>;
 };
 
 CreateScreen.navigationOptions = ({navigation}) => ({
