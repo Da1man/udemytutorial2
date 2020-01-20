@@ -79,16 +79,32 @@ const CreateNavigator = createStackNavigator({
 const MainNavigator = createDrawerNavigator({
   PostTabs: {
     screen: BottomNavigator,
+    navigationOptions: {
+      drawerLabel: 'Главная',
+      // drawerIcon: <Icon name={'ios-star'}/>
+    },
   },
   About: {
     screen: AboutNavigator,
+    navigationOptions: {
+      drawerLabel: 'О приложении',
+    },
   },
   Create: {
     screen: CreateNavigator,
+    navigationOptions: {
+      drawerLabel: 'Новый пост',
+    },
   },
 },
   {
     drawerType: 'slide',
+    contentOptions: {
+      activeTintColor: THEME.MAIN_COLOR,
+      labelStyle: {
+        fontFamily: 'OpenSans-Bold'
+      }
+    }
   })
 
 export const AppNavigation = createAppContainer(MainNavigator);
