@@ -6,7 +6,8 @@ import {MainScreen} from './MainScreen';
 
 export const AboutScreen = ({}) => {
   return <View style={styles.center}>
-    <Text>AboutScreen</Text>
+    <Text>Это лучшее приложение для личных заметок</Text>
+    <Text>Версия приложения <Text style={styles.version}>1.0.0</Text></Text>
   </View>;
 };
 
@@ -23,4 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  version: {
+    fontFamily: 'OpenSans-Bold'
+  }
 });
