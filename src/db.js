@@ -1,15 +1,33 @@
-import SQLite from "react-native-sqlite-storage";
+import SQLite from 'react-native-sqlite-storage';
 
-const db = SQLite.openDatabase('post.db')
+SQLite.DEBUG(true);
+SQLite.enablePromise(false)
+const db = SQLite.openDatabase('Database.db')
 
-export class DB {
-  static init() {
+export class DataBase {
+
+
+  static initDB() {
+
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
         tx.executeSql(
-          'CREATE TABLE IF NOT EXIST posts (id INTEGER PRIMARY KEY NOT NULL, text TEXT NOT NULL, img TEXT, date TEXT, booked INT)',
+          'CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY NOT NULL, text TEXT NOT NULL, img TEXT, date TEXT, booked INT',
           [],
-          resolve,
+          () => resolve(),
+          (_, error) => reject(error)
+        )
+      })
+    })
+  }
+
+  static getPosts() {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'SELECT * FROM posts',
+          [],
+          (_, result) => resolve(result.rows._array),
           (_, error) => reject(error)
         )
       })

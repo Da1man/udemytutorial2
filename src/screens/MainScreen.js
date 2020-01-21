@@ -14,17 +14,17 @@ export const MainScreen = ({navigation}) => {
   const dispatch = useDispatch()
 
   useEffect(()=> {
-    bootstrap();
+    //DB.init()
   })
 
-  async function bootstrap() {
-    try {
-      await DB.init()
-      console.log('Database started...')
-    } catch (e) {
-      console.log('Error: ', e)
-    }
-  }
+  // async function bootstrap() {
+  //   try {
+  //     await DB.init()
+  //     console.log('Database started...')
+  //   } catch (e) {
+  //     console.log('Error: ', e)
+  //   }
+  // }
 
   useEffect(() =>{
     dispatch(loadPosts())

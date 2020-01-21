@@ -1,13 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {AppHeaderIcon} from '../components/AppHeaderIcon';
 import {MainScreen} from './MainScreen';
+import {DataBase} from '../db';
+
 
 export const AboutScreen = ({}) => {
   return <View style={styles.center}>
     <Text>Это лучшее приложение для личных заметок</Text>
     <Text>Версия приложения <Text style={styles.version}>1.0.0</Text></Text>
+    <Button title={'connect db'} onPress={() => DataBase.initDB()}/>
+    <Button title={'connect db'} onPress={() => DataBase.getPosts()}/>
   </View>;
 };
 
