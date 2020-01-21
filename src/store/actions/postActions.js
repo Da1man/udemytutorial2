@@ -28,10 +28,10 @@ export const removePost = id => {
   }
 }
 
-export const addPost = post => {
-  post.id = Date.now().toString()
-  return {
+export const addPost = post => async dispatch => {
+
+  dispatch( {
     type: ADD_POST,
     payload: post
-  }
+  })
 }
