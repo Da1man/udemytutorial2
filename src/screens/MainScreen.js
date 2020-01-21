@@ -4,6 +4,7 @@ import {AppHeaderIcon} from '../components/AppHeaderIcon'
 import {PostList} from '../components/PostList';
 import {useDispatch, useSelector} from 'react-redux'
 import {loadPosts} from '../store/actions/postActions';
+import {DB} from '../db';
 
 export const MainScreen = ({navigation}) => {
   const openPostHandler = post => {
@@ -12,8 +13,13 @@ export const MainScreen = ({navigation}) => {
 
   const dispatch = useDispatch()
 
+  useEffect(()=> {
+    DB.init()
+  })
+
   useEffect(() =>{
     dispatch(loadPosts())
+
   }, [dispatch])
 
   const allPosts = useSelector(state => state.post.allPosts)
