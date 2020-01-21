@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   Text,
@@ -22,20 +22,22 @@ import {PhotoPicker} from '../components/PhotoPicker';
 export const CreateScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
-
-  const img = 'http://www.bighouse.ru/images/slides/%D0%B2%D0%B8%D0%B4%202%20%D0%B1%D1%80%D0%B5%D0%B2%D0%BD%D0%BE_s.jpg';
+  const imageRef = useRef();
 
   const saveHandler = () => {
     const post = {
       date: new Date().toJSON(),
       text: text,
-      img: img,
+      img: imageRef.current,
       booked: false,
     };
     dispatch(addPost(post));
     navigation.navigate('Main');
   };
 
+  const photoPickHandler = uri => {
+    imageRef.current = uri
+  }
 
   return <ScrollView>
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -48,8 +50,13 @@ export const CreateScreen = ({navigation}) => {
           onChangeText={setText}
           multiline
         />
-        <PhotoPicker />
-        <Button title={'Создать пост'} color={THEME.MAIN_COLOR} onPress={saveHandler}/>
+        <PhotoPicker onPick={photoPickHandler}/>
+        <Button
+          title={'Создать пост'}
+          color={THEME.MAIN_COLOR}
+          onPress={saveHandler}
+          disabled={!text}
+        />
       </View>
     </TouchableWithoutFeedback>
   </ScrollView>;

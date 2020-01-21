@@ -1,11 +1,24 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Image, Button} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import {THEME} from '../theme';
 
-export const PhotoPicker = ({}) => {
+export const PhotoPicker = ({onPick}) => {
   const [image, setImage] = useState(null)
+
+  const options = {
+    title: 'Загрузить фотографию',
+    cancelButtonTitle: 'Отмена',
+    takePhotoButtonTitle: 'Фото с камеры',
+    chooseFromLibraryButtonTitle: 'Загрузить из библиотеки',
+    tintColor: THEME.MAIN_COLOR,
+    mediaType: 'photo',
+    noData: true,
+
+  }
+
   const takePhoto = () => {
-    ImagePicker.showImagePicker({noData: true, mediaType: 'photo'}, (response) => {
+    ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
@@ -20,6 +33,7 @@ export const PhotoPicker = ({}) => {
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         setImage(response.uri)
+        onPick(response.uri)
       }
     });
   }
